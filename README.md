@@ -1,4 +1,6 @@
-# vue-expense-tracker
+# Vue Test
+
+This is a test project using Vue, Vuetify, Vuex, Vue Router and Firebase.
 
 ## Project setup
 ```
