@@ -37,7 +37,7 @@
       <password-reset />
       <v-btn text small color="secondary" @click="toggleLoginForm()">Create Account</v-btn>
       <v-spacer></v-spacer>
-      <v-btn color="primary" @click="login()">Login</v-btn>
+      <v-btn color="primary" @click="login()" :loading="authenticating">Login</v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -49,6 +49,7 @@ export default {
   components: { PasswordReset },
   data() {
     return {
+      authenticating: false,
       loginErrMsg: '',
       loginData: {
         email: '',
@@ -65,12 +66,16 @@ export default {
   },
   methods: {
     login() {
+      this.authenticating = true;
       this.loginErrMsg = '';
       if (this.$refs.loginForm.validate()) {
         this.$store.dispatch('login', {
           email: this.loginData.email,
           password: this.loginData.password,
+        }).then(() => {
+          this.authenticating = false;
         }).catch((error) => {
+          this.authenticating = false;
           this.loginErrMsg = error.message;
         });
       }
