@@ -6,7 +6,7 @@
   >
     <v-list>
       <v-list-item two-line>
-        <v-list-item-avatar class="ma-auto">
+        <v-list-item-avatar>
           <img src="https://randomuser.me/api/portraits/men/81.jpg">
         </v-list-item-avatar>
         <v-list-item-content>
@@ -34,6 +34,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   data() {
     return {
@@ -67,9 +69,7 @@ export default {
     },
   },
   computed: {
-    userProfile() {
-      return this.$store.state.userProfile;
-    },
+    ...mapState(['userProfile']),
   },
 };
 </script>
